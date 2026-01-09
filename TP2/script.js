@@ -93,4 +93,37 @@ for (let i = 0; i < notes.length - 1; i++) {
   compteur++;
 }
 
-console.log("Tableau trié :", notes);
+console.log("Tableau trié par ordre croissant :", notes);
+
+//Bonus 3
+console.log(" ");
+console.log("Bonus 3");
+console.log("Tableau pas décroissant :", notes);
+
+let compte = 0;
+
+/* Parcours chaque position du tableau pour y placer la plus petite valeur restante le -1 est ici 
+car une fois tout les éléments du tableau trié sauf 1 le dernier est forcément à la bonne place */
+for (let i = 0; i < notes.length - 1; i++) {
+  // On dit que i est le plus petit nombre
+  let indiceMin = i;
+
+  // On cherche s'il existe une valeur plus petite dans le reste du tableau
+  for (let j = i + 1; j < notes.length; j++) {
+    if (notes[j] > notes[indiceMin]) {
+      // Si on trouve plus petit on mémorise son nouvel index
+      indiceMin = j;
+    }
+  }
+
+  //On met indexMin à la bonne place si il ne l'est pas déjà avec ce que j'ai fait à la partie 3
+  if (indiceMin !== i) {
+    let temporaire = notes[i];
+    notes[i] = notes[indiceMin];
+    notes[indiceMin] = temporaire;
+  }
+  //Le Bonus 1 et 2
+  console.log("étape ", compte, ":", notes);
+  compte++;
+}
+console.log("Tableau décroissant :", notes);

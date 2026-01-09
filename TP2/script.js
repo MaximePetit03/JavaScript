@@ -29,7 +29,7 @@ console.log("Taille : ", taille);
 let min = notes[0];
 let max = notes[0];
 //correspond à l'indice 0 sinon il sera décalé de 1
-let index = -1;
+let index = 0;
 
 for (let i = 0; i < notes.length; i++) {
   if (notes[i] < min) {

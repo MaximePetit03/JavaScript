@@ -116,7 +116,7 @@ for (let i = 0; i < notes.length - 1; i++) {
     }
   }
 
-  //On met indexMin à la bonne place si il ne l'est pas déjà avec ce que j'ai fait à la partie 3
+  //On met indiceMin à la bonne place si il ne l'est pas déjà avec ce que j'ai fait à la partie 3
   if (indiceMin !== i) {
     let temporaire = notes[i];
     notes[i] = notes[indiceMin];

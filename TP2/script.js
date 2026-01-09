@@ -82,7 +82,7 @@ for (let i = 0; i < notes.length - 1; i++) {
     }
   }
 
-  //Échange les valeurs si le minimum trouvé n'est pas déjà à la bonne place
+  //On met indexMin à la bonne place si il ne l'est pas déjà avec ce que j'ai fait à la partie 3
   if (indexMin !== i) {
     let varTemp = notes[i];
     notes[i] = notes[indexMin];

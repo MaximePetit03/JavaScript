@@ -146,6 +146,7 @@ for (let i = 0; i < nbrEleves.length - 1; i++) {
 
 console.log("Avant tri :");
 
+//Affiche les 2 tableaux celui avant le tri et celui après le tri
 for (let i = 0; i < tableauAvantTri.length; i++) {
   console.log(tableauAvantTri[i].name, " - ", tableauAvantTri[i].moyenne);
 }

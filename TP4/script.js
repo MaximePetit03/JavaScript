@@ -101,7 +101,7 @@ function afficherDonnees(tableau) {
 }
 
 //Partie 5
-//échange 2 élèves de place
+//Sert à échanger 2 élèves de place
 function swap(nbrEleves, indexA, indexB) {
   let temp = nbrEleves[indexA];
 

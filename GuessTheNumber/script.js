@@ -1,4 +1,4 @@
-let randomNumber = Math.floor(Math.random() * 10) + 1;
+let randomNumber = Math.floor(Math.random() * 100) + 1;
 
 const guesses = document.querySelector(".guesses");
 const lastResult = document.querySelector(".lastResult");
@@ -23,7 +23,7 @@ function checkGuess() {
     lowOrHigh.textContent = "";
     setGameOver();
   } else if (guessCount === 10) {
-    lastResult.textContent = "Tu as un skill issue :(";
+    lastResult.textContent = "Tu as perdu :(";
     setGameOver();
   } else {
     lastResult.textContent = "Faux !";

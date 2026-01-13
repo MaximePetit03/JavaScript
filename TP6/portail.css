@@ -12,6 +12,8 @@ body {
 
 .portal {
   text-transform: capitalize;
+  color: black;
+  text-shadow: 5px 4px aqua;
 }
 
 form {
@@ -22,11 +24,16 @@ input {
   margin-top: 10px;
   width: 220px;
   height: 35px;
-  border: 2px solid aqua;
+  border: 2px solid white;
   background-color: black;
   color: white;
   font-size: 25px;
   border-radius: 10px;
+}
+
+input:hover {
+  border: 2px solid aqua;
+  background-color: black;
 }
 
 label {
@@ -36,13 +43,13 @@ label {
 
 .pseudo {
   border: 2px;
-  color: white;
+  color: magenta;
 }
 
 .back {
   margin-top: 40px;
   text-decoration: none;
-  color: white;
+  color: magenta;
 }
 
 a:hover {
@@ -53,15 +60,18 @@ button {
   display: flex;
   margin: 20px auto;
   border: 2px solid white;
-  background-color: blue;
+  background-color: black;
+  color: white;
   border-radius: 20px;
   font-size: 30px;
-  padding: 15px;
+  padding: 12px 45px 12px 45px;
   margin-top: 40px;
   cursor: pointer;
 }
 
 button:hover {
   transition: 0.25s;
-  padding: 20px;
+  padding: 12px 50 px 12px 50px;
+  border: 2px solid aqua;
+  color: aqua;
 }

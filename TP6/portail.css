@@ -1,0 +1,67 @@
+body {
+  font-size: 2rem;
+  margin: 0 auto;
+  text-align: center;
+  background-color: rgb(0, 0, 0);
+  color: white;
+}
+
+.container {
+  margin: 0 auto;
+}
+
+.portal {
+  text-transform: capitalize;
+}
+
+form {
+  margin-top: 120px;
+}
+
+input {
+  margin-top: 10px;
+  width: 220px;
+  height: 35px;
+  border: 2px solid aqua;
+  background-color: black;
+  color: white;
+  font-size: 25px;
+  border-radius: 10px;
+}
+
+label {
+  display: flex;
+  justify-content: center;
+}
+
+.pseudo {
+  border: 2px;
+  color: white;
+}
+
+.back {
+  margin-top: 40px;
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  transition: 1s;
+}
+
+button {
+  display: flex;
+  margin: 20px auto;
+  border: 2px solid white;
+  background-color: blue;
+  border-radius: 20px;
+  font-size: 30px;
+  padding: 15px;
+  margin-top: 40px;
+  cursor: pointer;
+}
+
+button:hover {
+  transition: 0.25s;
+  padding: 20px;
+}

@@ -1,21 +1,57 @@
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
+ctx.beginPath();
+ctx.rect(10, 10, 500, 400);
+ctx.strokeStyle = "rgb(0, 0, 255)";
+ctx.stroke();
+ctx.closePath();
+
 class Player {
-  constructor(id, name, skin, positionX, positionY) {
+  constructor(id, name, skin) {
     this.id = id;
     this.name = name;
     this.skin = skin;
-    this.positionX = positionX;
-    this.positioY = positionY;
-    this.hpMax = hpMax;
-    this.damage = damage;
-    this.heal = heal;
-    this.cooldown = cooldown;
-    this.speed = speed;
-    this.level = level;
+    this.positionX = 100;
+    this.positionY = 100;
+    this.hpMax = 100;
+    this.damage = 10;
+    this.heal = 5;
+    this.cooldown = 2000;
+    this.speed = 50;
+    this.level = 1;
+
+    //Pas dans update()
+    this.walkSpriteDuration = 5; // Vitesse de l'animation
+    this.walkSpriteIndex = 0; // Sprite actuel
+    this.walkSpriteNumber = 4;
+
+    // Animation Attaque
+    this.attackSpriteDuration = 5;
+    this.attackSpriteIndex = 0;
+    this.attackSpriteNumber = 3;
+
+    // Animation Mort
+    this.dieSpriteDuration = 10;
+    this.dieSpriteIndex = 0;
+    this.dieSpriteNumber = 5;
+
+    this.idleSpriteIndex = 0;
+    this.idleSpriteNumber = 2;
+
+    this.isWalking = false;
+    this.isAttacking = false;
+    this.isDie = false;
+
+    this.currentWalkSpriteStep = 0;
+    this.currentAttackSpriteStep = 0;
+    this.currentDieSpriteStep = 0;
+    this.currentIdleSpriteStep = 0;
   }
 
   update(updateData) {
     this.positionX = updateData.positionX;
-    this.positionY = updateData.positioY;
+    this.positionY = updateData.positionY;
     this.hpMax = updateData.hpMax;
     this.damage = updateData.damage;
     this.heal = updateData.heal;
@@ -23,8 +59,58 @@ class Player {
     this.speed = updateData.speed;
     this.level = updateData.level;
   }
+
+  animate() {
+    //The player is walking
+    if (this.isWalking) {
+      this.currentWalkSpriteStep++;
+
+      if (this.currentWalkSpriteStep >= this.walkSpriteDuration) {
+        this.currentWalkSpriteStep = 0;
+        this.walkSpriteDuration++;
+      }
+      if (this.walkSpriteIndex >= this.walkSpriteNumber) {
+        this.walkSpriteIndex = 0;
+      }
+      //The player is attacking
+    } else if (this.isAttacking) {
+      this.currentAttackSpriteStep++;
+
+      if (this.currentAttackSpriteStep >= this.attackSpriteDuration) {
+        this.currentAttackSpriteStep = 0;
+        this.attackSpriteDuration++;
+      }
+      if (this.attackSpriteIndex >= this.attackSpriteNumber) {
+        this.attackSpriteIndex = 0;
+      }
+      //The player is die
+    } else if (this.isDie) {
+      this.currentDieSpriteStep++;
+
+      if (this.currentDieSpriteStep >= this.dieSpriteDuration) {
+        this.currentDieSpriteStep = 0;
+        this.dieSpriteDuration++;
+      }
+      //The player is idle
+    } else {
+      if (this.currentIdleSpriteStep >= this.idleSpriteNumber) {
+        this.idleSpriteIndex = 0;
+      }
+    }
+    console.log("\n Walk animation : \n");
+    console.log("isWalking = ", this.isWalking);
+    console.log("walkSpriteIndex = ", this.walkSpriteIndex);
+    console.log(
+      "this.currentWalkSpriteStep = ",
+      this.currentWalkSpriteStep,
+      " / ",
+      this.walkSpriteDuration
+    );
+  }
 }
 
-let p1 = new Player(1, "poyo", "jsp", 100, 101);
+let p1 = new Player(1, "poyo", "jsp");
 
-console.log(p1.id);
+for (let i = 0; i < 15; i++) {
+  p1.animate();
+}

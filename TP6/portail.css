@@ -12,8 +12,9 @@ body {
 
 .portal {
   text-transform: capitalize;
-  color: black;
-  text-shadow: 5px 4px aqua;
+  color: white;
+  text-shadow: 0 0 10px rgb(255, 242, 0), 0 0 20px rgb(255, 242, 0),
+    0 0 30px rgb(255, 242, 0), 0 0 40px rgb(255, 242, 0);
 }
 
 form {
@@ -29,11 +30,16 @@ input {
   color: white;
   font-size: 25px;
   border-radius: 10px;
+  outline: none;
 }
 
 input:hover {
   border: 2px solid aqua;
-  background-color: black;
+}
+
+input:focus {
+  box-shadow: 0 0 10px aqua;
+  border: 2px solid aqua;
 }
 
 label {
@@ -43,25 +49,25 @@ label {
 
 .pseudo {
   border: 2px;
-  color: magenta;
+  color: aqua;
+  text-shadow: 0 0 10px aqua;
 }
 
-.back {
+label {
   margin-top: 40px;
   text-decoration: none;
-  color: magenta;
-}
-
-a:hover {
-  transition: 1s;
+  color: aqua;
+  text-shadow: 0 0 10px aqua;
+  text-transform: capitalize;
 }
 
 button {
   display: flex;
   margin: 20px auto;
   border: 2px solid white;
-  background-color: black;
-  color: white;
+  text-transform: capitalize;
+  background-color: rgb(238, 229, 229);
+  color: black;
   border-radius: 20px;
   font-size: 30px;
   padding: 12px 45px 12px 45px;
@@ -71,7 +77,9 @@ button {
 
 button:hover {
   transition: 0.25s;
-  padding: 12px 50 px 12px 50px;
-  border: 2px solid aqua;
-  color: aqua;
+  padding: 12px 47px 12px 47px;
+  border: 2px solid black;
+  box-shadow: 0 0 10px rgb(255, 145, 1), 0 0 20px rgb(255, 145, 1),
+    0 0 30px rgb(255, 145, 1);
+  font-size: 33px;
 }

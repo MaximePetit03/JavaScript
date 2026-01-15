@@ -1,15 +1,15 @@
 const form = document.querySelector("form");
 const div = document.querySelector("div");
 const canva = document.querySelector("canvas");
-
+const allInputs = document.querySelectorAll("input");
 const formulaire = document.querySelector("#form");
-const pseudo = document.querySelector("#name");
+const nickname = document.querySelector("#name");
 const backEnd = document.querySelector("#back");
 
 const cheminImg = "assets/";
 const extension = ".png";
 
-let checked = null;
+let skinPath = null;
 
 for (let i = 0; i < 30; i++) {
   const img = new Image();
@@ -25,10 +25,12 @@ for (let i = 0; i < 30; i++) {
     ctx.drawImage(img, 0, 128, 64, 64, 0, 0, 64, 64);
 
     canva.addEventListener("click", function () {
-      checked = i;
+      skinPath = `${cheminImg}${i}${extension}`;
 
       const allSkins = div.querySelectorAll("canvas");
-      allSkins.forEach((skins) => skins.classList.remove("selected"));
+      allSkins.forEach(function (skins) {
+        skins.classList.remove("selected");
+      });
 
       canva.classList.add("selected");
     });
@@ -40,18 +42,32 @@ for (let i = 0; i < 30; i++) {
 formulaire.addEventListener("submit", function (event) {
   event.preventDefault();
 
-  const nickname = pseudo.value.trim();
-  const back = backEnd.value.trim();
+  const pseudo = nickname.value.trim();
+  const serveurUrl = backEnd.value.trim();
 
-  if (nickname === "" || back === "" || checked == null) {
+  if (nickname === "" || serveurUrl === "" || skinPath == null) {
+    allInputs.forEach((input) => {
+      if (input.value.trim() === "") {
+        input.classList.add("faux");
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      } else {
+        input.classList.remove("faux");
+      }
+    });
     console.log("❌ Champs manquants");
+    window.scrollTo({
+      top: 300,
+      behavior: "smooth",
+    });
     return;
   }
 
-  localStorage.setItem("pseudo", nickname);
-  localStorage.setItem("backEnd", back);
+  localStorage.setItem("pseudo", pseudo);
+  localStorage.setItem("backEnd", serveurUrl);
+  localStorage.setItem("click", skinPath);
 
-  console.log("Pseudo : ", nickname);
-  console.log("Lien backend: ", back);
-  console.log("Skin : ", checked);
+  console.log(localStorage);
 });

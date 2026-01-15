@@ -29,6 +29,11 @@ input {
   outline: none;
 }
 
+input.faux {
+  border: 2px solid red;
+  box-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px red;
+}
+
 input:hover {
   box-shadow: 0 0 10px white;
   border: 2px solid white;
@@ -86,7 +91,7 @@ canvas {
   border: 2px solid aqua;
   border-radius: 15px;
 }
-canvas.selected {
+.selected {
   border: 2px solid rgb(0, 255, 0);
   box-shadow: 0 0 10px rgb(0, 255, 0);
 }

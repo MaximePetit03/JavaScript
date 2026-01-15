@@ -11,12 +11,13 @@ class Player {
     this.id = id;
     this.name = name;
     this.skin = skin;
-    this.positionX = 100;
-    this.positionY = 100;
+
+    this.renderX = position[0];
+    this.renderY = position[1];
+
+    //Stats
     this.hp = 100;
     this.hpMax = 100;
-    this.damage = 10;
-    this.heal = 5;
     this.speed = 50;
     this.level = 1;
 
@@ -33,7 +34,7 @@ class Player {
     // Animation Mort
     this.deathSpriteDuration = 10;
     this.deathSpriteIndex = 0;
-    this.dieSpriteNumber = 6;
+    this.deathSpriteNumber = 6;
 
     this.idleSpriteIndex = 0;
     this.idleSpriteNumber = 2;
@@ -50,14 +51,20 @@ class Player {
   }
 
   update(updateData) {
-    this.positionX = updateData.positionX;
-    this.positionY = updateData.positionY;
+    [this.renderX, this.renderY] = updateData.position;
+
+    this.name = updateData.name;
     this.hp = updateData.hp;
     this.hpMax = updateData.hpMax;
-    this.damage = updateData.damage;
-    this.heal = updateData.heal;
+    this.attackCooldown = updateData.attackCooldown;
+    this.currentAttackCooldown = updateData.currentAttackCooldown;
     this.speed = updateData.speed;
     this.level = updateData.level;
+
+    this.isAttacking = updateData.isAttacking;
+    this.isWalking = updateData.isWalking;
+    this.isDying = updateData.isDying;
+    this.skinPath = updateData.skinPath;
   }
 
   animate() {
@@ -102,38 +109,12 @@ class Player {
         this.deathSpriteIndex++;
       }
 
-      if (this.currentIdleSpriteStep >= this.idleSpriteNumber) {
+      if (this.currentDeathSpriteStep >= this.deathSpriteNumber) {
         this.dead = true;
       }
       //The player is idle
     } else {
-      if (this.currentDeathSpriteStep >= this.deathSpriteDuration) {
-        this.currentDeathSpriteStep = 0;
-        this.deathSpriteIndex++;
-      }
-
-      if (this.currentIdleSpriteStep >= this.idleSpriteNumber) {
-        this.idleSpriteIndex = 0;
-      }
+      this.walkSpriteIndex = 0;
     }
-    console.log("\n Walk animation : \n");
-    console.log("isWalking = ", this.isWalking);
-    console.log("walkSpriteIndex = ", this.walkSpriteIndex);
-    console.log(
-      "this.currentWalkSpriteStep = ",
-      this.currentWalkSpriteStep,
-      " / ",
-      this.walkSpriteDuration
-    );
   }
-}
-
-this.isWalking = true;
-this.isAttacking = true;
-this.isDie = true;
-
-let p1 = new Player(1, "poyo", "jsp");
-
-for (let i = 0; i < 10; i++) {
-  p1.animate();
 }

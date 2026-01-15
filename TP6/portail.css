@@ -1,17 +1,13 @@
 body {
   font-size: 2rem;
   margin: 0 auto;
-  text-align: center;
   background-color: rgb(0, 0, 0);
   color: white;
 }
 
-.container {
-  margin: 0 auto;
-}
-
 .portal {
   text-transform: capitalize;
+  text-align: center;
   color: white;
   text-shadow: 0 0 10px rgb(255, 242, 0), 0 0 20px rgb(255, 242, 0),
     0 0 30px rgb(255, 242, 0), 0 0 40px rgb(255, 242, 0);
@@ -34,12 +30,13 @@ input {
 }
 
 input:hover {
-  border: 2px solid aqua;
+  box-shadow: 0 0 10px white;
+  border: 2px solid white;
 }
 
 input:focus {
-  box-shadow: 0 0 10px aqua;
-  border: 2px solid aqua;
+  box-shadow: 0 0 15px white;
+  border: 2px solid white;
 }
 
 label {
@@ -53,12 +50,51 @@ label {
   text-shadow: 0 0 10px aqua;
 }
 
+.back {
+  text-transform: capitalize;
+}
+
 label {
   margin-top: 40px;
   text-decoration: none;
   color: aqua;
   text-shadow: 0 0 10px aqua;
+}
+
+.choice-perso::first-letter {
   text-transform: capitalize;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+canvas {
+  background: #eee;
+  margin: 0 auto;
+  width: 110px;
+  height: 110px;
+  margin: 10px;
+  background-color: black;
+  border: 2px solid aqua;
+  border-radius: 15px;
+}
+
+canvas:checked {
+  border: 2px solid rgb(0, 255, 0);
+  box-shadow: 0 0 10px rgb(0, 255, 0);
+}
+
+canvas:hover {
+  box-shadow: 0 0 10px rgb(0, 255, 0), 0 0 20px rgb(0, 255, 0);
+  cursor: pointer;
 }
 
 button {
@@ -82,4 +118,8 @@ button:hover {
   box-shadow: 0 0 10px rgb(255, 145, 1), 0 0 20px rgb(255, 145, 1),
     0 0 30px rgb(255, 145, 1);
   font-size: 33px;
+}
+
+button:active {
+  font-size: 37px;
 }

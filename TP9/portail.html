@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TP9</title>
+    <link rel="stylesheet" type="text/css" href="portail.css" />
+  </head>
+  <body>
+    <h1 class="portal">JS Arena</h1>
+    <form id="form">
+      <label for="name" class="pseudo">Pseudo&nbsp;: </label
+      ><input
+        type="text"
+        placeholder="Ex : Tchoupi"
+        id="name"
+        value="tchoupi"
+      />
+      <label for="back" class="back">lien backend&nbsp;: </label
+      ><input
+        type="text"
+        placeholder="ws://localhost:8000/ws"
+        value="ws://localhost:8000/ws"
+        id="back"
+      />
+      <label class="choice-perso">Choisis ton skin&nbsp;:</label>
+      <div class="skin"></div>
+      <button type="submit">join</button>
+    </form>
+    <script src="portail.js"></script>
+  </body>
+</html>

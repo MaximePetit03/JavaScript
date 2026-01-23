@@ -1,0 +1,21 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+canvas {
+  display: block;
+}
+
+section {
+  display: flex;
+  background-color: black;
+}
+
+.timer {
+  color: aqua;
+  text-shadow: 0 0 10px aqua;
+  margin-left: 290px;
+}

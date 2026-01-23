@@ -3,6 +3,7 @@ html {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  color: aqua;
 }
 
 canvas {
@@ -14,8 +15,19 @@ section {
   background-color: black;
 }
 
-.timer {
-  color: aqua;
+.stats {
+  position: absolute;
+  top: 230px;
+  right: 0px;
+  text-align: center;
+  font-size: 25px;
+}
+
+.timer,
+#playerAlive {
   text-shadow: 0 0 10px aqua;
-  margin-left: 290px;
+}
+
+#playerAlive {
+  margin-top: 20px;
 }

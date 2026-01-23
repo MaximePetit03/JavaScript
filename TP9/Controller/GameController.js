@@ -1,8 +1,5 @@
 class GameController {
   constructor() {
-    this.timer = document.querySelector(".timer");
-    this.startTime = Date.now();
-
     // Server sends updates at 20 ticks per second
     this.SERVER_TICK_RATE = 20;
     // Duration between two server ticks in milliseconds
@@ -59,16 +56,7 @@ class GameController {
 
   // === Main render loop ===
   loop(timestamp) {
-    const delaySeconds = Math.floor((Date.now() - this.startTime) / 1000);
-
-    const minutes = Math.floor(delaySeconds / 60);
-    const seconds = delaySeconds % 60;
-    const timeString = `${minutes}:${seconds.toString().padStart(2, "0")}`;
-
-    //Maj HTML
-    if (this.timer) {
-      this.timer.textContent = `Temps : ${timeString}`;
-    }
+    this.gameView.stats();
 
     this.alpha = (timestamp - this.lastServerUpdate) / this.SERVER_INTERVAL;
 

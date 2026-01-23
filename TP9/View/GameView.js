@@ -1,5 +1,10 @@
 class GameViews {
   constructor(gameInstance) {
+    this.timer = document.querySelector(".timer");
+    this.div = document.querySelector(".stats");
+    this.startTime = Date.now();
+    this.playersAlive = document.querySelector("#playerAlive");
+
     this.game = gameInstance;
     this.canvas = document.querySelector("canvas");
 
@@ -55,6 +60,10 @@ class GameViews {
     const hpX = x - barWidth / 2;
     const hpY = y - verticalOffset;
 
+    // Fond de la barre
+    this.ctx.fillStyle = "rgba(255, 0, 0, 0.79)";
+    this.ctx.fillRect(hpX, hpY, barWidth, barHeight);
+
     // Remplissage HP
     this.ctx.fillStyle = "#51ff00";
     this.ctx.fillRect(hpX, hpY, barWidth * hpRatio, barHeight);
@@ -82,6 +91,45 @@ class GameViews {
 
     const level = `${player.name} lvl ${player.lvl}`;
     this.ctx.fillText(level, x, hpY - 4);
+  }
+
+  stats() {
+    const delaySeconds = Math.floor((Date.now() - this.startTime) / 1000);
+
+    const minutes = Math.floor(delaySeconds / 60);
+    const seconds = delaySeconds % 60;
+    const timeString = `${minutes}:${seconds.toString().padStart(2, "0")}`;
+
+    if (this.timer) {
+      this.timer.textContent = `Temps : ${timeString}`;
+    }
+
+    let aliveCount = 0;
+    const players = this.game.players;
+    for (const id in players) {
+      if (!players[id].isDead) {
+        aliveCount++;
+      }
+    }
+
+    if (this.playersAlive) {
+      this.playersAlive.textContent = `Joueurs en vie : ${aliveCount}`;
+      this.div.style.marginRight = "250px";
+
+      if (aliveCount === 1) {
+        this.playersAlive.textContent = `Fin de la partie GG well played `;
+        this.div.style.marginRight = "100px";
+        this.playersAlive.style.textShadow = "0 0 10px #51ff00";
+        this.playersAlive.style.color = "#51ff00";
+      }
+
+      if (aliveCount === 0) {
+        this.playersAlive.textContent = `Aucun joueur`;
+        this.div.style.marginRight = "230px";
+        this.playersAlive.style.color = "#00ffd5";
+        this.playersAlive.style.textShadow = "0 0 10px #00ffd5";
+      }
+    }
   }
 
   drawPlayer(player) {
@@ -117,7 +165,7 @@ class GameViews {
     } else if (trueDirection === 3) {
       trueDirection = 1;
     }
-
+    //image à 128px
     if (
       player.isAttacking ||
       (player.attackSpriteIndex && player.attackSpriteIndex > 0)

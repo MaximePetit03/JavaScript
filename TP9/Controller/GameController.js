@@ -56,6 +56,7 @@ class GameController {
 
   // === Main render loop ===
   loop(timestamp) {
+    this.gameView.displayClassment();
     this.gameView.stats();
 
     this.alpha = (timestamp - this.lastServerUpdate) / this.SERVER_INTERVAL;

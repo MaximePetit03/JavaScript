@@ -1,7 +1,6 @@
 body,
 html {
   margin: 0;
-  padding: 0;
   overflow: hidden;
   color: aqua;
 }
@@ -17,10 +16,10 @@ section {
 
 .stats {
   position: absolute;
-  top: 230px;
-  right: 0px;
+  top: 20px;
+  right: -50px;
   text-align: center;
-  font-size: 25px;
+  font-size: 22px;
 }
 
 .timer,
@@ -30,4 +29,19 @@ section {
 
 #playerAlive {
   margin-top: 20px;
+}
+
+.classement {
+  border: 2px solid aqua;
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: 0 0 10px aqua;
+}
+
+ul {
+  list-style: none;
+  padding-right: 50px;
+}
+li {
+  margin-bottom: 10px;
 }

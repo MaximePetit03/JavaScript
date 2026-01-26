@@ -2,6 +2,7 @@ class GameViews {
   constructor(gameInstance) {
     this.timer = document.querySelector(".timer");
     this.div = document.querySelector(".stats");
+
     this.startTime = Date.now();
     this.playersAlive = document.querySelector("#playerAlive");
 
@@ -113,27 +114,60 @@ class GameViews {
     }
 
     if (this.playersAlive) {
-      this.playersAlive.textContent = `Joueurs en vie : ${aliveCount}`;
+      this.playersAlive.textContent = `Joueurs en vie  ${aliveCount}`;
       this.div.style.marginRight = "250px";
 
       if (aliveCount === 1) {
-        this.playersAlive.textContent = `Fin de la partie GG well played `;
-        this.div.style.marginRight = "100px";
+        this.playersAlive.textContent = `Fin de la partie`;
+        this.div.style.marginRight = "250px";
         this.playersAlive.style.textShadow = "0 0 10px #51ff00";
         this.playersAlive.style.color = "#51ff00";
-      }
-
-      if (aliveCount === 0) {
+      } else if (aliveCount === 0) {
         this.playersAlive.textContent = `Aucun joueur`;
-        this.div.style.marginRight = "230px";
+        this.div.style.marginRight = "250px";
         this.playersAlive.style.color = "#00ffd5";
         this.playersAlive.style.textShadow = "0 0 10px #00ffd5";
+      } else if (aliveCount > 1) {
+        this.playersAlive.textContent = `Joueurs en vie ${aliveCount}`;
+        this.div.style.marginRight = "250px";
       }
+    }
+  }
+
+  displayClassment() {
+    this.liste = document.querySelector("ul");
+
+    this.liste.innerHTML = "";
+    //On transforme l'objet des joueurs en un tableau pour pouvoir le manipuler
+    const players = Object.values(this.game.players);
+
+    //On trie les joueurs du niveau le plus élevé (b) jusqu'au plus petit (a)
+    players.sort((a, b) => {
+      if (a.isDead !== b.isDead) {
+        return a.isDead ? 1 : -1;
+      }
+      // Si les deux ont le même état, il sont triés par niveau
+      return b.lvl - a.lvl;
+    });
+
+    for (const id in players) {
+      const player = players[id];
+
+      const li = document.createElement("li");
+
+      //On regarde si le joueur est mort ou vivant pour choisir quoi afficher
+      const statut = player.isDead ? "mort" : "en vie";
+
+      li.textContent = `${player.name} : Lvl ${player.lvl} est ${statut}`;
+
+      this.liste.appendChild(li);
     }
   }
 
   drawPlayer(player) {
     let skinPath = player.skinPath;
+    let spriteSpeciaux = [26, 29, 24, 21, 18, 13, 7];
+    const skinMaudits = Number(skinPath.replace(/\D/g, ""));
 
     if (!skinPath.startsWith("./") && !skinPath.startsWith("http")) {
       skinPath = "./" + skinPath;
@@ -170,9 +204,11 @@ class GameViews {
       player.isAttacking ||
       (player.attackSpriteIndex && player.attackSpriteIndex > 0)
     ) {
-      // ATTAQUE (128px)
-      spriteSize = 128;
-      // On commence après 54 lignes de 64px
+      if (spriteSpeciaux.includes(skinMaudits)) {
+        spriteSize = 128;
+      } else {
+        spriteSize = 196;
+      }
       const startY = 54 * 64;
       // On descend d'une ligne de 128px par direction
       spriteX = player.attackSpriteIndex * spriteSize;

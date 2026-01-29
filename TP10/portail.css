@@ -16,7 +16,7 @@ body {
     0 0 40px rgb(255, 242, 0);
 }
 
-form {
+#form {
   margin-top: 120px;
 }
 
@@ -119,21 +119,19 @@ button {
   border-radius: 20px;
   font-size: 25px;
   padding: 12px 45px 12px 45px;
-  margin-top: 40px;
   cursor: pointer;
 }
 
 button:hover {
   transition: 0.25s;
-  padding: 12px 47px 12px 47px;
+  transform: scale(1.08);
   border: 2px solid black;
   box-shadow:
     0 0 10px rgb(255, 145, 1),
     0 0 20px rgb(255, 145, 1),
     0 0 30px rgb(255, 145, 1);
-  font-size: 27px;
 }
 
 button:active {
-  font-size: 29px;
+  transform: scale(1.15);
 }

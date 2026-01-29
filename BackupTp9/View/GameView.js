@@ -1,4 +1,4 @@
-export class GameViews {
+class GameViews {
   constructor(infos) {
     this.timer = document.querySelector(".timer");
     this.div = document.querySelector(".stats");

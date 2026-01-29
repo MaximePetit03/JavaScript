@@ -1,5 +1,5 @@
-export class GameController {
-  constructor(game, gameView) {
+class GameController {
+  constructor() {
     // Server sends updates at 20 ticks per second
     this.SERVER_TICK_RATE = 20;
     // Duration between two server ticks in milliseconds
@@ -14,8 +14,8 @@ export class GameController {
     this.serveurURL = localStorage.getItem("serveurUrl");
     this.spritePath = localStorage.getItem("spritePath");
 
-    this.infos = game;
-    this.gameView = gameView;
+    this.infos = new Game();
+    this.gameView = new GameViews(this.infos);
     this.inputState = {
       up: false,
       down: false,
@@ -57,6 +57,7 @@ export class GameController {
   // === Main render loop ===
   loop(timestamp) {
     this.gameView.stats();
+
     this.gameView.displayClassment();
 
     this.alpha = (timestamp - this.lastServerUpdate) / this.SERVER_INTERVAL;
@@ -118,4 +119,8 @@ export class GameController {
     }, this.SERVER_INTERVAL);
   }
 }
+
+// === Start the game controller by instantiating the GameController class ===
+// This line will execute the constructor (e.g, launch the frontend)
+new GameController();
 //LANCER LE BACKEND : python -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload

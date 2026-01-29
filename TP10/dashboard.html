@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Game Dashboard</h1>
+      <nav>
+        <form id="server">
+          <label for="servInput">Adresse du serveur :</label>
+          <input
+            type="text"
+            id="servInput"
+            placeholder="Ex : 10.45.31.53:8000"
+            value="13.38.137.68:8000"
+            required
+          />
+          <button type="submit">Connexion</button>
+        </form>
+      </nav>
+    </header>
+
+    <main class="dashboard-grid">
+      <section id="player-stats">
+        <h2 id="stats-title">
+          STATISTIQUES de <span id="playerName"> --- </span>
+        </h2>
+        <article id="statsContent">
+          <p>Sélectionner un joueur pour voir ses stats</p>
+        </article>
+      </section>
+
+      <section id="leaderboard">
+        <h2 id="leaderboard-title">Classement Général</h2>
+        <div class="table-container">
+          <table>
+            <h3 class="player-sort">
+              Top des joueurs triés par nombre de kills
+            </h3>
+            <thead>
+              <tr>
+                <th scope="col">Rang</th>
+                <th scope="col">Joueur</th>
+                <th scope="col">Kills</th>
+                <th scope="col">Morts</th>
+                <th scope="col">Ratio</th>
+                <th scope="col">Parties</th>
+              </tr>
+            </thead>
+            <tbody id="ranking"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <script src="dashboard.js"></script>
+  </body>
+</html>

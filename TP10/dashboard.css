@@ -1,0 +1,159 @@
+body {
+  background-color: #000000;
+  color: #ffffff;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+h1,
+h2 {
+  color: aqua;
+  text-shadow: 0 0 10px aqua;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+header nav {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+#server {
+  background-color: #0f0f0f;
+  padding: 20px;
+  border: 1px solid aqua;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+label {
+  color: aqua;
+  font-weight: bold;
+}
+
+input {
+  background-color: #000000;
+  color: white;
+  border: 1px solid #444;
+  padding: 10px;
+  border-radius: 4px;
+  outline: none;
+  transition: 0.3s;
+}
+
+input:focus {
+  border-color: aqua;
+  box-shadow: 0 0 8px aqua;
+}
+
+button {
+  background: aqua;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+  text-transform: uppercase;
+}
+
+button:hover {
+  box-shadow: 0 0 20px aqua;
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(1.1);
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  gap: 25px;
+  max-width: 1300px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+section {
+  background-color: #0f0f0f;
+  border: 1px solid aqua;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
+  overflow: hidden;
+}
+
+#player-stats {
+  padding: 20px;
+}
+
+#statsContent p {
+  margin: 10px 0;
+  padding: 12px;
+  background: transparent;
+  border-left: 4px solid aqua;
+  font-size: 1.1rem;
+}
+
+#statsContent strong {
+  color: aqua;
+  float: right;
+}
+
+#leaderboard-title {
+  margin: 20px 0 10px 0;
+}
+
+.player-sort {
+  font-size: 1rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.table-container {
+  max-height: 500px;
+  overflow-y: auto;
+  padding: 0 20px 20px 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  background-color: #0f0f0f;
+  color: aqua;
+  border-bottom: 2px solid aqua;
+  padding: 15px 10px;
+  text-align: left;
+  z-index: 2;
+}
+
+td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #222;
+}
+
+tr:hover {
+  background: rgba(0, 255, 255, 0.03);
+}
+
+.selected-row {
+  background-color: rgba(0, 255, 255, 0.114);
+  border-left: 4px solid aqua;
+}
+
+.selected-row td {
+  color: aqua;
+}

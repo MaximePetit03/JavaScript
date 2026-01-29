@@ -5,7 +5,7 @@ const directions = {
   south: 3,
 };
 
-export class Player {
+class Player {
   constructor(id, name, skinPath, position) {
     // Unique identifier attributed by the server
     this.id = id;

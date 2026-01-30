@@ -1,13 +1,13 @@
 import uuid
 import random
 
-# Players stats
+# Stats de base
 BASE_SPEED = 0.2
 BASE_HP_REGEN_RATE = 10
 BASE_ATTACK_DAMAGE = 30
 BASE_ATTACK_COOLDOWN = 1.0
-BASE_ATTACK_RANGE = 0.15     # distance devant le joueur
-BASE_ATTACK_WIDTH = 0.10     # largeur du slash
+BASE_ATTACK_RANGE = 0.15
+BASE_ATTACK_WIDTH = 0.10
 BASE_MAX_HP = 100
 
 class Player:
@@ -16,11 +16,16 @@ class Player:
         self.name = name
         self.skin_path = skin_path
 
-        # Define random starting coordinates
+        # Coordonnées aléatoires
         self.x = random.randint(0, 100) / 100.0
         self.y = random.randint(0, 100) / 100.0
 
-        # Define starting stats
+        # --- STATS DE COMBAT ET CLASSEMENT ---
+        self.kills = 0
+        self.deaths = 0
+        self.games_played = 1
+        # -------------------------------------
+
         self.lvl = 1
         self.hp = BASE_MAX_HP
         self.max_hp = BASE_MAX_HP
@@ -35,52 +40,17 @@ class Player:
         self.attack_damage = BASE_ATTACK_DAMAGE
         self.is_dead = False
 
-
     def get_attack_hitbox(self):
         px, py = self.x, self.y
-
-        if self.direction == 2:
-            return (
-                px - BASE_ATTACK_WIDTH / 2,
-                py,
-                BASE_ATTACK_WIDTH,
-                BASE_ATTACK_RANGE
-            )
-
-        if self.direction == 0:
-            return (
-                px - BASE_ATTACK_WIDTH / 2,
-                py - BASE_ATTACK_RANGE,
-                BASE_ATTACK_WIDTH,
-                BASE_ATTACK_RANGE
-            )
-
-        if self.direction == 1:
-            return (
-                px,
-                py - BASE_ATTACK_WIDTH / 2,
-                BASE_ATTACK_RANGE,
-                BASE_ATTACK_WIDTH
-            )
-
-        if self.direction == 3:
-            return (
-                px - BASE_ATTACK_RANGE,
-                py - BASE_ATTACK_WIDTH / 2,
-                BASE_ATTACK_RANGE,
-                BASE_ATTACK_WIDTH
-            )
-
+        if self.direction == 2: return (px - BASE_ATTACK_WIDTH / 2, py, BASE_ATTACK_WIDTH, BASE_ATTACK_RANGE)
+        if self.direction == 0: return (px - BASE_ATTACK_WIDTH / 2, py - BASE_ATTACK_RANGE, BASE_ATTACK_WIDTH, BASE_ATTACK_RANGE)
+        if self.direction == 1: return (px, py - BASE_ATTACK_WIDTH / 2, BASE_ATTACK_RANGE, BASE_ATTACK_WIDTH)
+        if self.direction == 3: return (px - BASE_ATTACK_RANGE, py - BASE_ATTACK_WIDTH / 2, BASE_ATTACK_RANGE, BASE_ATTACK_WIDTH)
 
     def point_in_rect(self, rx, ry, rw, rh):
-        return (
-            rx <= self.x <= rx + rw and
-            ry <= self.y <= ry + rh
-        )
-
+        return (rx <= self.x <= rx + rw and ry <= self.y <= ry + rh)
 
     def to_dict(self):
-        # Destined to be used for data sync
         return {
             "name": self.name,
             "skinPath": self.skin_path,
@@ -88,12 +58,11 @@ class Player:
             "lvl": self.lvl,
             "hp": self.hp,
             "maxHp": self.max_hp,
-            "hpRegenRate": self.hp_regen_rate,
-            "speed": self.speed,
+            "kills": self.kills,   # Ajouté pour la synchro
+            "deaths": self.deaths, # Ajouté pour la synchro
             "direction": self.direction,
             "isAttacking": self.is_attacking,
             "isWalking": self.is_walking,
             "isDying": self.is_dying,
-            "attackCooldown": self.attack_cooldown,
-            "currentAttackCooldown": self.current_attack_cooldown
+            "isDead": self.is_dead
         }

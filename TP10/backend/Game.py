@@ -45,15 +45,15 @@ class Game:
     def end_game(self):
         alive_players = 0
         if len(self.players) >= self.needed_players:
-            for key in self.players.keys():
-                player = self.players[key]
-                if player.is_dead == False:
+            for player in self.players.values():
+                if not player.is_dead:
                     alive_players += 1
 
+        # Utilise is_over (avec le "is_") pour être cohérent avec broadcast_state
         if alive_players > 1:
-            self.over = False
+            self.is_over = False
         else:
-            self.over = True
+            self.is_over = True
 
 
     async def broadcast_state(self):
@@ -90,6 +90,10 @@ class Game:
 
 
     def handle_kill(self, killer, victim):
+        # --- ENREGISTREMENT DES STATS POUR LE DASHBOARD ---
+        killer.kills += 1    # Le tueur gagne +1 Kill
+        victim.deaths += 1   # La victime prend +1 Mort
+        # --------------------------------------------------
 
         if victim.lvl > killer.lvl:
             killer.lvl = victim.lvl
@@ -98,6 +102,7 @@ class Game:
 
         victim.is_dying = True
 
+        # Mise à jour des stats de puissance du tueur (déjà présent)
         killer.max_hp = BASE_MAX_HP * (1.2 ** killer.lvl)
         killer.hp = killer.max_hp
         killer.speed = BASE_SPEED * (1.1 ** killer.lvl)

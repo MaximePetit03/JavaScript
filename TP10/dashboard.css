@@ -111,6 +111,36 @@ section {
   margin: 20px 0 10px 0;
 }
 
+/* Conteneur pour s'assurer que le bouton reste sous la section dans la grille */
+.stats-column {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Espace entre la section et le bouton */
+}
+
+.btn-portal {
+  padding: 13px;
+  background-color: aqua;
+  color: black;
+  border: 2px solid aqua;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-portal:hover {
+  box-shadow: 0 0 15px aqua;
+  transform: scale(1.05);
+}
+
+.btn-portal:active {
+  box-shadow: 0 0 15px aqua;
+  transform: scale(1.08);
+}
+
 .player-sort {
   font-size: 1rem;
   color: white;

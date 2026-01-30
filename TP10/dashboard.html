@@ -25,14 +25,24 @@
     </header>
 
     <main class="dashboard-grid">
-      <section id="player-stats">
-        <h2 id="stats-title">
-          STATISTIQUES de <span id="playerName"> --- </span>
-        </h2>
-        <article id="statsContent">
-          <p>Sélectionner un joueur pour voir ses stats</p>
-        </article>
-      </section>
+      <div class="stats-column">
+        <section id="player-stats">
+          <h2 id="stats-title">
+            STATISTIQUES de <span id="playerName"> --- </span>
+          </h2>
+          <article id="statsContent">
+            <p>Sélectionner un joueur pour voir ses stats</p>
+          </article>
+        </section>
+
+        <button
+          type="button"
+          class="btn-portal"
+          onclick="window.location.href = 'portail.html'"
+        >
+          Accéder au Portail
+        </button>
+      </div>
 
       <section id="leaderboard">
         <h2 id="leaderboard-title">Classement Général</h2>
